@@ -19,3 +19,10 @@ alphabet
 2) The ILIKE operator, which is a PostgreSQL-only implementation, is case insensitive
 3) Percent sign ( % ) A wildcard matching one or more characters
 4) Underscore ( _ ) A wildcard matching just one character
+
+## Indexing Watchout
+Even though a column with a serial type auto-increments each time a row is
+added, some scenarios will create gaps in the sequence of numbers in the
+column. If a row is deleted, for example, the value in that row is never
+replaced. Or, if a row insert is aborted, the sequence for the column will still
+be incremented.

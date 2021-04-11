@@ -1,0 +1,31 @@
+# create db
+create database mydb;
+
+CREATE TABLE char_data_types (
+    varchar_column varchar(10),
+    char_column char(10),
+    text_column text
+);
+
+SELECT *
+FROM information_schema.columns
+WHERE table_schema = 'your_schema'
+AND table_name   = 'your_table'
+;
+
+# char adds padding up to the nth-character
+# varchar is self-limiting up until the final character, no padding added
+"abc"	"abc       "	"abc" -- do notice the padding
+"defghi"	"defghi    "	"defghi"
+
+# connect to db
+\c [db_name]
+
+# create schema
+create schema [db_schema_name]
+create schema schemax
+
+# populating an existing table with a file living in a path/container
+COPY us_counties_2010
+FROM '/us_counties_2010.csv'
+WITH (FORMAT CSV, HEADER);

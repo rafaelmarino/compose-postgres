@@ -1,0 +1,23 @@
+# Detached (-d)
+To start a container in detached mode, you use -d=true or just -d option. By design, containers started in detached mode exit when the root process used to run the container exits, unless you also specify the --rm option. If you use -d with --rm, the container is removed when it exits or when the daemon exits, whichever happens first.
+
+# Remove (--rm)
+The --rm flag is there to tell the Docker Daemon to clean up the container and remove the file system after the container exits. This helps you save disk space after running short-lived containers like this one, that we only started to print "Hello, World!".
+
+# first alternative
+docker run --rm --name pgContainer -e POSTGRES_PASSWORD=docker123 -d -p 5432:5432 -v $HOME/docker/volumes/postgres:/var/lib/postgresql/data postgres
+
+
+# One specific file can be copied TO the container like:
+docker cp foo.txt mycontainer:/foo.txt
+
+# To enter a Postgres container, you need to execute using the container name and enable psql, the command-line interface for Postgres.
+# sudo docker exec -it [container_name] psql -U [postgres_user]
+sudo docker exec -it pgContainer psql -U postgres
+
+# exit postgres container
+\q
+
+# copying a local file into a container
+$ docker cp datasets/us_counties_2010.csv postgres_container:/us_counties_2010.csv
+
