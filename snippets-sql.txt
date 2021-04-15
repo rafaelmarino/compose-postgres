@@ -29,3 +29,19 @@ create schema schemax
 COPY us_counties_2010
 FROM '/us_counties_2010.csv'
 WITH (FORMAT CSV, HEADER);
+
+-- Listing 5-6: Checking Census data totals
+SELECT geo_name,
+       state_us_abbreviation AS "State_Code",
+       p0010001 AS "Total",
+       (p0010003 + p0010004 + p0010005 + p0010006 + p0010007
+           + p0010008 + p0010009) AS "All Races",
+       (p0010003 + p0010004 + p0010005 + p0010006 + p0010007
+           + p0010008 + p0010009) - p0010001 AS "Difference"
+FROM garden.us_counties_2010
+ORDER BY "Difference" DESC;
+
+-- Basic join syntax
+SELECT *
+FROM table_a JOIN table_b
+ON table_a.key_column = table_b.foreign_key_column
