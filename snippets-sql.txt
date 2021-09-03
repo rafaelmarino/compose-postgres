@@ -45,3 +45,29 @@ ORDER BY "Difference" DESC;
 SELECT *
 FROM table_a JOIN table_b
 ON table_a.key_column = table_b.foreign_key_column
+
+
+CREATE TABLE garden.companies_left (
+id integer CONSTRAINT left_id_key PRIMARY KEY,
+left_company varchar(30)
+);
+
+INSERT INTO garden.companies_left (id, left_company) VALUES
+(1, 'IBM'),
+(2, 'Tesla'),
+(5, 'Megacorp'),
+(6, 'Microsoft');
+
+CREATE TABLE garden.companies_right (
+id integer CONSTRAINT right_id_key PRIMARY KEY,
+right_company varchar(30)
+);
+
+INSERT INTO garden.companies_right (id, right_company) VALUES
+(1, 'IBM'),
+(2, 'Tesla'),
+(3, 'Amazon'),
+(4, 'JP Morgan'),
+(6, 'Microsoft');
+
+

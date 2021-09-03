@@ -21,3 +21,21 @@ sudo docker exec -it pgContainer psql -U postgres
 # copying a local file into a container
 $ docker cp datasets/us_counties_2010.csv postgres_container:/us_counties_2010.csv
 
+$ docker exec postgres_container rm -rf us_counties_2010.csv
+
+# volumes
+
+# copy file to named volume volume: 
+$ docker cp datasets/us_counties_2010.csv postgres_container:/data/datasets/us_counties_2010.csv
+
+# remove file from container
+$ docker exec <container> rm -rf <YourFile>
+$ docker exec postgres_container rm -rf data/us_counties_2010.csv
+
+# create a volume
+$ docker volume create <my-vol>
+
+# list volumes
+$ docker volume ls
+
+
